@@ -103,8 +103,6 @@ var game = {
         var incorrectSpan = $("<span>").text("Incorrect Answers: " + game.wrongAnswers.length).append("<br>");
         var unansweredSpan = $("<span>").text("Unanswered: " + game.unansweredQuestions).append("<br>");
         var resetButton = $("<button>").attr("id", "reset").text("Try Again").append("<br>");
-
-
         
         resultsDiv.append(resultsHeader);
         resultsDiv.append(correctSpan);
@@ -145,10 +143,6 @@ $(document).on("submit", ".question-form", function(event) {
             answerIndex: answerIndex
         });
     }
-
-    // if the question was unanswered
-    
-
 });
 
 $(document).on("click", "#reset", function(event) {
