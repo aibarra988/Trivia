@@ -27,11 +27,7 @@ var game = {
     ],
     rightAnswers: [],
     wrongAnswers: [],
-    makeTimerHTML: function(time) {
-        if (typeof time === 'number') {
-            $("#time-remaining").text("Time remaining: " + time);
-        }
-    },
+    unansweredQuestions: 0,
     count: function() {
         game.time--;
         game.makeTimerHTML(game.time);
@@ -49,10 +45,10 @@ var game = {
     },
     start: function() {
         if (!clockRunning) {
-            game.time = game.time === 0 ? 4 : game.time;
+            game.time = 4;
             intervalId = setInterval(game.count, 1000);
             clockRunning = true;
-            game.makeTimerHTML();
+            game.makeTimerHTML(game.time);
             game.makeQuestionHTML();
         }
     },
@@ -60,8 +56,16 @@ var game = {
         clearInterval(intervalId);
         clockRunning = false;
     },
+    makeTimerHTML: function(time) {
+        if (typeof time === 'number') {
+            $("#time-remaining").text("Time remaining: " + time).show();
+        }
+    },
     makeQuestionHTML: function() {
-        $("#questions").empty();
+        $("#results").empty();
+        $("#results").hide();
+        
+        $("#questions").empty().show();
 
         game.triviaQuestions.forEach(function(round, idx) {
             var form = $("<form>");
@@ -90,21 +94,22 @@ var game = {
         });
     },
     makeResultsHTML: function() {
-        $("#results").empty();
-        $("#time-remaining").empty();
-        $("#questions").empty();
-        $("#results").show();  
+        $("#questions").empty().hide();
+        $("#results").empty().show();
         
         var resultsDiv = $("<div>");
-        var resultsHeader = $("<h1>").text("Results").append("<br>");
-        var correctSpan = $("<span>").text("Correct Answers: ", game.rightAnswers.length).append("<br>");
-        var incorrectSpan = $("<span>").text("Incorrect Answers: ", game.wrongAnswers.length).append("<br>");
+        var resultsHeader = $("<h1>").text("Results");
+        var correctSpan = $("<span>").text("Correct Answers: " + game.rightAnswers.length).append("<br>");
+        var incorrectSpan = $("<span>").text("Incorrect Answers: " + game.wrongAnswers.length).append("<br>");
+        var unansweredSpan = $("<span>").text("Unanswered: " + game.unansweredQuestions).append("<br>");
         var resetButton = $("<button>").attr("id", "reset").text("Try Again").append("<br>");
+
 
         
         resultsDiv.append(resultsHeader);
         resultsDiv.append(correctSpan);
         resultsDiv.append(incorrectSpan);
+        resultsDiv.append(unansweredSpan);
         resultsDiv.append(resetButton);
         $("#results").append(resultsDiv);
     },
@@ -140,11 +145,18 @@ $(document).on("submit", ".question-form", function(event) {
         });
     }
 
+    // if the question was unanswered
+    if (typeof answerIndex !== 'number') {
+        game.unansweredQuestions++;
+    }
+
 });
 
 $(document).on("click", "#reset", function(event) {
     event.preventDefault();
-    console.log("ayyy");
+    game.rightAnswers = [];
+    game.wrongAnswers = []; 
+    game.unansweredQuestions = 0;
     game.makeQuestionHTML();
     game.start();
 });
