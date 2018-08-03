@@ -130,8 +130,9 @@ $(document).on("submit", ".question-form", function(event) {
     var questionIndex = parseInt($(this).attr("data-question-number"));
     var answerIndex = parseInt($(this).find("input:checked").val());
     
-    // check if the answer given was the right answer
-    if (answerIndex === game.triviaQuestions[questionIndex].answerIndex) {
+    if (answerIndex.toString() === "NaN") {
+        game.unansweredQuestions++;
+    } else if (answerIndex === game.triviaQuestions[questionIndex].answerIndex) {
         // if the answer was right, keep track of it for stats
         game.rightAnswers.push({
             questionIndex: questionIndex
@@ -146,9 +147,7 @@ $(document).on("submit", ".question-form", function(event) {
     }
 
     // if the question was unanswered
-    if (typeof answerIndex !== 'number') {
-        game.unansweredQuestions++;
-    }
+    
 
 });
 
