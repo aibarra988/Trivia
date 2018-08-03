@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Trivia</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <style>
+        #choice-0 {
+            margin-left: 0;
+        }
+        .choice {
+            margin-left: 1em;
+        }
+        #time-remaining {
+            visibility: hide;
+        }
+        #questions {
+            visibility: hide;
+        }
+        #results {
+            visibility: hide;
+        } 
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1>Trivia Game</h1>
+        <button id="start-game">Press to Start</button>
+        <span id="time-remaining"></span>
+
+        <div id="questions"></div>
+        <div id="results"></div>
+    </div>
+    <script src="assets/javascript/game.js"></script>
+</body>
+</html>
