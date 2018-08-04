@@ -62,9 +62,9 @@ var game = {
         }
     },
     makeQuestionHTML: function() {
-        $("#results").empty();
-        $("#results").hide();
-        
+        $(".container").css("background-color", "#4c00e6");
+        $(".container").css( "opacity", .9);
+        $("#results").empty().hide();
         $("#questions").empty().show();
 
         game.triviaQuestions.forEach(function(round, idx) {
