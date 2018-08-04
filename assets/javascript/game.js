@@ -2,27 +2,42 @@ var intervalId;
 var clockRunning = false;
 
 var game = {
-    time: 4,
+    time: 20,
     triviaQuestions: [
         {
-            question: "What country is Juarez in?",
-            answerIndex: 2,
-            choices: ["Answer A", "Answer B", "Answer C", "Answer D"]
+            question: "What is the sole purpose of the robot that Rick created in the breakfast table",
+            answerIndex: 1,
+            choices: ["Make eggs", "Pass the butter", "Conquer dimensions", "Annoy Jerry"]
         },
         {
-            question: "What country is Algiers?",
-            answerIndex: 2,
-            choices: ["Answer A", "Answer B", "Answer C", "Answer D"]
+            question: "What is the name of the 'real world' dimension that humanity lives in?",
+            answerIndex: 0,
+            choices: ["C-137", "Milky Way", "Earth Dimension", "Carl's Jr."]
         },
         {
-            question: "What country is Oslo in?",
-            answerIndex: 2,
-            choices: ["Answer A", "Answer B", "Answer C", "Answer D"]
+            question: "In S3E1, Rick divulges that the reason for his adventures is to...",
+            answerIndex: 3,
+            choices: ["Rule the universe", "McDonald's Szechuan Sauce", "Destroy corporations", "Make more episodes"]
         },
         {
-            question: "What country is Hamburg?",
+            question: "What movie was the character's from Rick and Morty loosely based off of?",
+            answerIndex: 1,
+            choices: ["E.T", "Back to the Future", "Alien", "The Terminator"]
+        },
+        {
+            question: "In the episode with Mr. Meeseeks, Jerry drives them to a breaking point with a request to...",
+            answerIndex: 3,
+            choices: ["Fix his marriage", "Make him smarter", "Have Rick's approval", "Improve his putt swing"]
+        },
+        {
+            question: "What is Rick's famous catchphrase?",
             answerIndex: 2,
-            choices: ["Answer A", "Answer B", "Answer C", "Answer D"]
+            choices: ["Shut the door!", "Lovely Jubbly", "Wubbalubbadubdub", "Make it so"]
+        },
+        {
+            question: "In the episode with Jemaine Clement of Flight of the Conchords, his character name is...",
+            answerIndex: 2,
+            choices: ["Brain Twister", "Mobius", "Fart", "Gassy Face"]
         }
     ],
     rightAnswers: [],
@@ -45,7 +60,7 @@ var game = {
     },
     start: function() {
         if (!clockRunning) {
-            game.time = 4;
+            game.time = 20;
             intervalId = setInterval(game.count, 1000);
             clockRunning = true;
             game.makeTimerHTML(game.time);
@@ -71,7 +86,7 @@ var game = {
             var form = $("<form>");
             form.attr("class", "question-form");
             form.attr("data-question-number", idx);
-            var question = $("<p>");
+            var question = $("<p>").attr("id", "question");
             question.text(round.question);
             
             round.choices.forEach(function(item, idx) {
