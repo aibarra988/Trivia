@@ -2,7 +2,7 @@ var intervalId;
 var clockRunning = false;
 
 var game = {
-    time: 20,
+    time: 60,
     triviaQuestions: [
         {
             question: "What is the sole purpose of the robot that Rick created in the breakfast table",
@@ -60,7 +60,7 @@ var game = {
     },
     start: function() {
         if (!clockRunning) {
-            game.time = 20;
+            game.time = 60;
             intervalId = setInterval(game.count, 1000);
             clockRunning = true;
             game.makeTimerHTML(game.time);
