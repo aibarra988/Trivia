@@ -6,7 +6,7 @@ var successAudio = new Audio("assets/audio/I_like_what_you_got.wav");
 var failAudio = new Audio("assets/audio/disqualified2.wav");
 
 var game = {
-    time: 60,
+    time: 45,
     triviaQuestions: [
         {
             question: "What is the sole purpose of the robot that Rick created in the breakfast table",
@@ -64,7 +64,7 @@ var game = {
     },
     start: function() {
         if (!clockRunning) {
-            game.time = 60;
+            game.time = 45;
             intervalId = setInterval(game.count, 1000);
             clockRunning = true;
             game.makeTimerHTML(game.time);
