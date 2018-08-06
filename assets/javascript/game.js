@@ -1,6 +1,10 @@
 var intervalId;
 var clockRunning = false;
 
+var startAudio = new Audio("assets/audio/Riggity.wav");
+var successAudio = new Audio("assets/audio/I_like_what_you_got.wav");
+var failAudio = new Audio("assets/audio/disqualified2.wav");
+
 var game = {
     time: 60,
     triviaQuestions: [
@@ -133,6 +137,7 @@ var game = {
 };
 
 $("#start-game").click(function() {
+    startAudio.play();
     $("#start-game").hide();
     game.start();
 });
@@ -157,6 +162,12 @@ $(document).on("submit", ".question-form", function(event) {
             questionIndex: questionIndex,
             answerIndex: answerIndex
         });
+    }
+
+    if (game.wrongAnswers.length > 3 || game.unansweredQuestions > 3) {
+        failAudio.play();
+    } else if(game.rightAnswers.length > 4) {
+        successAudio.play();
     }
 });
 
